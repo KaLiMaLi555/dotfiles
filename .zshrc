@@ -40,7 +40,7 @@ autoload -U compinit && compinit
 zinit cdreplay -q
 
 # Completion Styling
-ls_command='eza --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions $realpath'
+local ls_command='eza --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions $realpath'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview $ls_command
@@ -53,6 +53,18 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview $ls_command
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+function sesh-sessions() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+    [[ -z "$session" ]] && return
+    sesh connect $session
+  }
+}
+
+bindkey '^s' sesh-sessions
 
 # History
 HISTSIZE=10000

@@ -40,11 +40,11 @@ autoload -U compinit && compinit
 zinit cdreplay -q
 
 # Completion Styling
-# zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+ls_command='eza --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions $realpath'
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview $ls_command
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview $ls_command
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -79,8 +79,6 @@ alias ta='tmux a -t'
 # alias astop='aws ec2 stop-instances --instance-ids i-0508eeae076668d8f'
 # alias token_aws='./scripts/aws-token.sh kirtan default'
 # alias ip_aws='./scripts/aws-ip.sh'
-
-alias ls='ls --color'
 
 alias ls='eza --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions'
 alias lt='eza -l --tree --level=3 --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions'

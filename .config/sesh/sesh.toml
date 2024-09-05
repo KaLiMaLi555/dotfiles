@@ -31,4 +31,4 @@ startup_command = "nvim wezterm.lua"
 [[session]]
 name = "dotfiles"
 path = "~/dotfiles"
-startup_command = "ls"
+startup_command = "ls -la"

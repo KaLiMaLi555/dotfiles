@@ -82,11 +82,10 @@ alias ta='tmux a -t'
 
 alias ls='ls --color'
 
-# alias ls='eza --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions'
-# alias lt='eza -l --tree --level=3 --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions'
-# alias cd="z"
-#
-# cx() { cd "$@" && l; }
+alias ls='eza --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions'
+alias lt='eza -l --tree --level=3 --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions'
+
+cx() { cd "$@" && ls; }
 
 # Shell integretions
 eval "$(fzf --zsh)"

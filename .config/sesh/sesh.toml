@@ -1,0 +1,34 @@
+[[session]]
+name = "tmux config"
+path = "~/dotfiles"
+startup_command = "nvim .tmux.conf"
+
+[[session]]
+name = "tmux sesh config"
+path = "~/dotfiles/.config/sesh"
+startup_command = "nvim sesh.toml"
+
+[[session]]
+name = "nvim config"
+path = "~/.config/nvim"
+startup_command = "nvim init.lua"
+
+[[session]]
+name = "aerospace config"
+path = "~/dotfiles/.config/aerospace"
+startup_command = "nvim aerospace.toml"
+
+[[session]]
+name = "zsh config"
+path = "~/dotfiles"
+startup_command = "nvim .zshrc"
+
+[[session]]
+name = "wezterm config"
+path = "~/dotfiles/.config/wezterm"
+startup_command = "nvim wezterm.lua"
+
+[[session]]
+name = "dotfiles"
+path = "~/dotfiles"
+startup_command = "ls"

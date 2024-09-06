@@ -4,7 +4,7 @@ path = "~/dotfiles"
 startup_command = "nvim .tmux.conf"
 
 [[session]]
-name = "tmux sesh config"
+name = "sesh-tmux config"
 path = "~/dotfiles/.config/sesh"
 startup_command = "nvim sesh.toml"
 

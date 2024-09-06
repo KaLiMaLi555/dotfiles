@@ -1,8 +1,14 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 local gpu_adapters = require("utils.gpu_adapter")
 
 -- TODO: Do error handling while setting config table
 local config = wezterm.config_builder()
+
+wezterm.on("gui-startup", function()
+	local _, _, window = mux.spawn_window({})
+	window:gui_window():maximize()
+end)
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font("MesloLGS Nerd Font Mono")

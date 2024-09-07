@@ -87,6 +87,7 @@ alias ca='conda activate'
 alias cod='conda deactivate'
 alias tn='tmux new -s'
 alias ta='tmux a -t'
+alias gs="git status"
 # alias astart='aws ec2 start-instances --instance-ids i-0508eeae076668d8f'
 # alias astop='aws ec2 stop-instances --instance-ids i-0508eeae076668d8f'
 # alias token_aws='./scripts/aws-token.sh kirtan default'

@@ -1,3 +1,6 @@
+[default_session]
+startup_command = "ls"
+
 [[session]]
 name = "tmux config"
 path = "~/dotfiles"

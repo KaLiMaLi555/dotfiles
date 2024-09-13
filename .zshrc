@@ -58,13 +58,24 @@ function sesh-sessions() {
     exec </dev/tty
     exec <&1
     local session
-    session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
-    [[ -z "$session" ]] && return
-    sesh connect $session
-  }
+    session=$(sesh list -t -c | fzf-tmux -p 55%,60% \
+      --no-sort --ansi --border-label ' sesh ' --prompt '⚡  ' \
+      --header '  [a] all;  [t] tmux;  [g] configs  [x] zoxide  [d] tmux kill  [f] find' \
+      --bind 'tab:down,btab:up' \
+      --bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t)' \
+      --bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list)' \
+      --bind 'ctrl-g:change-prompt(⚙️  )+reload(sesh list -c)' \
+      --bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z)' \
+      --bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+      --bind 'ctrl-d:execute(tmux kill-session -t {})+change-prompt(⚡  )+reload(sesh list)'
+        )
+        [[ -z "$session" ]] && return
+        sesh connect $session
+    }
 }
 
-bindkey '^s' sesh-sessions
+zle -N sesh-sessions
+bindkey "^[z" sesh-sessions
 
 # History
 HISTSIZE=10000

@@ -57,7 +57,7 @@ on-focus-changed = [
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-outer.top =        [{ monitor."built-in.*" = 5 }, 48]
+outer.top =        [{ monitor."built-in.*" = 5 }, 5]
 inner.horizontal = 5
 inner.vertical =   5
 outer.left =       5

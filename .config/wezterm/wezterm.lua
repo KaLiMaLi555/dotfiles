@@ -11,6 +11,20 @@ wezterm.on("gui-startup", function()
 end)
 
 config.color_scheme = "Tokyo Night"
+
+config.background = {
+	{
+		source = {
+			Color = "#16161e",
+		},
+		width = "100%",
+		height = "100%",
+		repeat_x = "NoRepeat",
+		repeat_y = "NoRepeat",
+		opacity = 1.0,
+	},
+}
+
 config.font = wezterm.font("MesloLGS Nerd Font Mono")
 config.default_cursor_style = "SteadyBar"
 config.font_size = 12
@@ -23,8 +37,6 @@ config.window_padding = {
 	top = 10,
 	bottom = 0,
 }
-config.window_background_opacity = 0.85
-config.macos_window_background_blur = 20
 config.animation_fps = 60
 config.max_fps = 60
 config.front_end = "WebGpu"

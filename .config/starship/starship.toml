@@ -1,0 +1,47 @@
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$python\
+$cmd_duration
+$character
+"""
+
+add_newline = true
+
+[python]
+format = '[(\(${symbol} $virtualenv\))]($style) '
+symbol = ""
+style = "bold blue"
+
+[character]
+success_symbol = " [](bold blue)"
+error_symbol = " [](bold red)"
+
+[cmd_duration]
+format = "[$duration]($style) "
+min_time = 500
+show_milliseconds = false
+
+[git_branch]
+format = "[$symbol $branch]($style) "
+symbol = ""
+style = "bold green"
+
+[git_commit]
+commit_hash_length = 7
+
+[git_state]
+format = "[$state]($style) "
+style = "bold dimmed white"
+
+[directory]
+truncation_length = 2
+truncate_to_repo = true
+format = " [$path]($style) "
+style = "bold grey"
+
+[directory.substitutions]
+"~" = "HOME"
+"nvim" = "NVIM"
+"dotfiles" = "DOTFILES"

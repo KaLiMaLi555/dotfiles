@@ -10,6 +10,22 @@ wezterm.on("gui-startup", function()
 	window:gui_window():maximize()
 end)
 
+local is_darwin = function()
+	return wezterm.target_triple:find("darwin") ~= nil
+end
+
+if not is_darwin() then
+	config.wsl_domains = {
+		{
+			name = "WSL:Ubuntu",
+			distribution = "Ubuntu-24.04",
+			username = "kalimali555",
+			default_cwd = "/home/kalimali555",
+		},
+	}
+	config.default_domain = "WSL:Ubuntu"
+end
+
 config.color_scheme = "Tokyo Night"
 
 config.background = {
@@ -39,10 +55,12 @@ config.window_padding = {
 }
 config.animation_fps = 60
 config.max_fps = 60
-config.front_end = "WebGpu"
-config.webgpu_power_preference = "HighPerformance"
-config.webgpu_preferred_adapter = gpu_adapters:pick_best()
-config.audible_bell = "Disabled"
-config.term = "wezterm"
+if is_darwin() then
+	config.front_end = "WebGpu"
+	config.webgpu_power_preference = "HighPerformance"
+	config.webgpu_preferred_adapter = gpu_adapters:pick_best()
+	config.audible_bell = "Disabled"
+	config.term = "wezterm"
+end
 
 return config

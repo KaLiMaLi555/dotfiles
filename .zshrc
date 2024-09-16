@@ -19,8 +19,10 @@ fi
 # Source zinit
 source "$ZINIT_HOME/zinit.zsh"
 
-# Prompt plugin
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+# # Prompt plugin
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+eval "$(starship init zsh)"
 
 # Add in plugins
 zinit light zsh-users/zsh-syntax-highlighting

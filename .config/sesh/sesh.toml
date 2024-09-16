@@ -3,12 +3,12 @@ startup_command = "ls"
 
 [[session]]
 name = "tmux config"
-path = "~/dotfiles"
-startup_command = "nvim .tmux.conf"
+path = "~"
+startup_command = "nvim ~/.tmux.conf"
 
 [[session]]
 name = "sesh-tmux config"
-path = "~/dotfiles/.config/sesh"
+path = "~/.config/sesh"
 startup_command = "nvim sesh.toml"
 
 [[session]]
@@ -18,18 +18,23 @@ startup_command = "nvim init.lua"
 
 [[session]]
 name = "aerospace config"
-path = "~/dotfiles/.config/aerospace"
+path = "~/.config/aerospace"
 startup_command = "nvim aerospace.toml"
 
 [[session]]
 name = "zsh config"
-path = "~/dotfiles"
+path = "~"
 startup_command = "nvim .zshrc"
 
 [[session]]
 name = "wezterm config"
-path = "~/dotfiles/.config/wezterm"
+path = "~/.config/wezterm"
 startup_command = "nvim wezterm.lua"
+
+[[session]]
+name = "starship config"
+path = "~/.config/starship"
+startup_command = "nvim starship.toml"
 
 [[session]]
 name = "dotfiles"

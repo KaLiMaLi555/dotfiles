@@ -116,6 +116,7 @@ alias gs="git status"
 
 alias ls='eza --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions'
 alias lt='eza -l --tree --level=3 --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions'
+alias cat="bat"
 
 cx() { cd "$@" && ls; }
 

@@ -99,6 +99,7 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+setopt autocd
 
 # Aliases
 alias c=clear
@@ -109,6 +110,8 @@ alias cod='conda deactivate'
 alias tn='tmux new -s'
 alias ta='tmux a -t'
 alias gs="git status"
+alias ..="cd .."
+alias ...="cd ../.."
 # alias astart='aws ec2 start-instances --instance-ids i-0508eeae076668d8f'
 # alias astop='aws ec2 stop-instances --instance-ids i-0508eeae076668d8f'
 # alias token_aws='./scripts/aws-token.sh kirtan default'
@@ -116,6 +119,7 @@ alias gs="git status"
 
 alias ls='eza --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions'
 alias lt='eza -l --tree --level=3 --color=always --long --icons=always --git --no-filesize --no-time --no-user --no-permissions'
+alias cat="bat"
 
 cx() { cd "$@" && ls; }
 

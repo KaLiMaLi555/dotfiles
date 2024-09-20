@@ -39,7 +39,7 @@ style = "bold dimmed white"
 truncation_length = 2
 truncate_to_repo = true
 format = " [$path]($style) "
-style = "bold grey"
+style = "bold blue"
 
 [directory.substitutions]
 "~" = "HOME"

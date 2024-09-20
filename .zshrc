@@ -112,6 +112,7 @@ alias ta='tmux a -t'
 alias gs="git status"
 alias ..="cd .."
 alias ...="cd ../.."
+alias activate="source .venv/bin/activate"
 # alias astart='aws ec2 start-instances --instance-ids i-0508eeae076668d8f'
 # alias astop='aws ec2 stop-instances --instance-ids i-0508eeae076668d8f'
 # alias token_aws='./scripts/aws-token.sh kirtan default'

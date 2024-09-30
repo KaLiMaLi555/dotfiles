@@ -117,7 +117,7 @@ alt-t = 'workspace t'
 alt-b = 'workspace b'
 alt-s = 'workspace s'
 alt-n = 'workspace n'
-alt-2 = 'workspace 2'
+alt-f = 'workspace f'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
@@ -131,7 +131,6 @@ alt-shift-t = ['move-node-to-workspace t', 'workspace t']
 alt-shift-b = ['move-node-to-workspace b', 'workspace b']
 alt-shift-s = ['move-node-to-workspace s', 'workspace s']
 alt-shift-n = ['move-node-to-workspace n', 'workspace n']
-alt-shift-2 = ['move-node-to-workspace 2', 'workspace 2']
 alt-shift-3 = ['move-node-to-workspace 3', 'workspace 3']
 alt-shift-4 = ['move-node-to-workspace 4', 'workspace 4']
 alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
@@ -188,3 +187,11 @@ run = "move-node-to-workspace b"
 [[on-window-detected]]
 if.app-id = "com.spotify.client"
 run = "move-node-to-workspace s"
+
+[[on-window-detected]]
+if.app-id = "md.obsidian"
+run = "move-node-to-workspace n"
+
+[[on-window-detected]]
+if.app-id = "com.apple.finder"
+run = "move-node-to-workspace f"

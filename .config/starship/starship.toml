@@ -3,6 +3,7 @@ $directory\
 $git_branch\
 $git_commit\
 $python\
+$conda\
 $cmd_duration
 $character
 """
@@ -12,7 +13,12 @@ add_newline = true
 [python]
 format = '[(\(${symbol} $virtualenv\))]($style) '
 symbol = ""
-style = "bold blue"
+style = "bold yellow"
+
+[conda]
+format = '[(\(${symbol} $environment\))]($style) '
+symbol = "🅒"
+style = "bold green"
 
 [character]
 success_symbol = " [](bold green)"

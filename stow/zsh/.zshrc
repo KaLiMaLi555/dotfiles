@@ -56,10 +56,17 @@ zinit light zsh-users/zsh-history-substring-search
 zinit ice wait lucid
 zinit light Aloxaf/fzf-tab                  # replace zsh tab-complete with fzf
 
-# fzf binary + shell integration
-zinit ice from"gh-r" as"program" mv"fzf -> fzf" pick"fzf"
-
+# fzf — binary from system (apt/brew); shell integration (Ctrl+R, Ctrl+T, Alt+C) from junegunn/fzf
+zinit ice wait lucid multisrc"shell/{key-bindings,completion}.zsh"
 zinit light junegunn/fzf
+
+# Ubuntu/Debian renames fd → fdfind. Pick whichever exists.
+if command -v fd >/dev/null 2>&1; then
+  _FD=fd
+elif command -v fdfind >/dev/null 2>&1; then
+  _FD=fdfind
+  alias fd=fdfind
+fi
 
 # z — jump to frecent directories (like autojump/zoxide but pure shell)
 zinit ice wait lucid
@@ -125,9 +132,9 @@ bindkey '^H' backward-kill-word               # Ctrl+Backspace delete word
 # ─────────────────────────────────────────────
 # FZF SETTINGS
 # ─────────────────────────────────────────────
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_DEFAULT_COMMAND="${_FD:-fd} --type f --hidden --follow --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_ALT_C_COMMAND="${_FD:-fd} --type d --hidden --follow --exclude .git"
 export FZF_DEFAULT_OPTS="
   --height=40%
   --layout=reverse

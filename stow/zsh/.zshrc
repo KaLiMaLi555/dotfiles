@@ -56,9 +56,10 @@ zinit light zsh-users/zsh-history-substring-search
 zinit ice wait lucid
 zinit light Aloxaf/fzf-tab                  # replace zsh tab-complete with fzf
 
-# fzf — pinned binary + shell integration loaded SYNCHRONOUSLY so binary+scripts match before key-bindings load.
-# (apt fzf is too old for current key-bindings.zsh — async load races with binary install.)
-zinit ice from"gh-r" as"program" mv"fzf -> fzf" pick"fzf" \
+# fzf — canonical zinit recipe: clone repo, run ./install --bin (downloads matching binary),
+# source key-bindings.zsh + completion.zsh from same source tree.
+zinit ice as"program" pick"bin/fzf" \
+  atclone"./install --bin" atpull"%atclone" \
   multisrc"shell/{key-bindings,completion}.zsh"
 zinit light junegunn/fzf
 

@@ -1,0 +1,38 @@
+# name: Python Dev
+# keybind: D
+# enabled: true
+
+# Window 1: Editor
+rename-window "editor"
+send-keys "cd ${WORK_DIR}" Enter
+
+# Window 2: Server — 4-pane grid
+#   ┌─────────────┬──────────────┐
+#   │ frontend    │ backend      │
+#   ├─────────────┼──────────────┤
+#   │ jobrouter   │ ngrok        │
+#   └─────────────┴──────────────┘
+new-window -n "server" -c "${WORK_DIR}/Tinify-app"
+send-keys "npm run dev" Enter
+split-window -h -p 50 -c "${WORK_DIR}/aistudio-backend"
+send-keys "source .venv/bin/activate" Enter
+send-keys "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload" Enter
+select-pane -t 1
+split-window -v -p 50 -c "${WORK_DIR}/tinify-jobrouter"
+send-keys "source .venv/bin/activate" Enter
+send-keys "uvicorn app.main:app --reload --port 8001" Enter
+select-pane -t 3
+split-window -v -p 50 -c "${WORK_DIR}"
+send-keys "ngrok http 8001" Enter
+
+# Window 3: Shell — two side-by-side panes
+new-window -n "shell" -c "${WORK_DIR}"
+split-window -h -p 50 -c "${WORK_DIR}"
+
+# Window 4: Git
+new-window -n "git" -c "${WORK_DIR}/aistudio-backend"
+send-keys "git status" Enter
+send-keys "git log --oneline --graph -10" Enter
+
+# Go back to editor window
+select-window -t 1

@@ -1,0 +1,8 @@
+# lazy.nvim lock file (auto-generated, changes frequently)
+lazy-lock.json
+
+# Compiled plugin files
+plugin/
+
+# lua_ls auto-generated config
+.luarc.json

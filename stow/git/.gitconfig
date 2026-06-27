@@ -1,0 +1,6 @@
+# Git per-user configuration
+# Machine-specific [user] block (name, email, signing) lives in ~/.gitconfig.local — gitignored.
+# See examples/gitconfig.local for the template.
+
+[include]
+    path = ~/.gitconfig.local

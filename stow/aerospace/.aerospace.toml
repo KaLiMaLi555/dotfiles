@@ -1,0 +1,343 @@
+# ~/.aerospace.toml
+# Hybrid two-tier scheme: single-chord alt+letter for the 5 daily drivers
+# (t/b/e/c/m), alt-o leader for everything else. Zero tmux Alt-* conflicts.
+
+after-login-command = []
+after-startup-command = [
+    "exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=2.0"
+]
+start-at-login = true
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+exec-on-workspace-change = []
+key-mapping.preset = 'qwerty'
+
+# Keep macOS-hidden apps from auto-unhiding into the wrong workspace
+automatically-unhide-macos-hidden-apps = false
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
+
+# Visual mode feedback removed - TOML single-line strings can't span lines.
+# (The borders binary is invoked from after-startup-command above for the main color.)
+
+[gaps]
+outer.top =        [{ monitor."built-in.*" = 5 }, 5]
+inner.horizontal = 5
+inner.vertical =   5
+outer.left =       5
+outer.bottom =     5
+outer.right =      5
+
+# --- MAIN MODE ---
+[mode.main.binding]
+cmd-h = []        # disable macOS hide
+cmd-alt-h = []    # disable macOS hide-others
+alt-enter = 'exec-and-forget open -na /Applications/Ghostty.app/'
+
+# Layout toggles
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
+
+# Tile focus (vim, pure)
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+# Tile move within workspace
+alt-shift-h = 'move left'
+alt-shift-j = 'move down'
+alt-shift-k = 'move up'
+alt-shift-l = 'move right'
+
+# Quick single-shot resize (sticky resize in mode.resize)
+alt-shift-minus = 'resize smart -50'
+alt-shift-equal = 'resize smart +50'
+alt-equal       = 'balance-sizes'
+
+# Fullscreen
+alt-shift-enter = 'fullscreen'
+
+# Quick actions
+alt-quote       = 'focus --boundaries workspace --boundaries-action wrap-around-the-workspace dfs-next'
+alt-shift-quote = 'workspace-back-and-forth'
+alt-shift-space = 'enable toggle'
+
+# Scratchpad — alt-` toggles to scratch workspace, alt-shift-` sends window there
+alt-backtick       = 'workspace --auto-back-and-forth scratch'
+alt-shift-backtick = ['move-node-to-workspace scratch', 'workspace scratch']
+
+# --- TIER 1: single-chord daily drivers ---
+alt-t = 'workspace --auto-back-and-forth t'
+alt-b = 'workspace --auto-back-and-forth b'
+alt-e = 'workspace --auto-back-and-forth e'
+alt-c = 'workspace --auto-back-and-forth c'
+alt-m = 'workspace --auto-back-and-forth m'
+
+# Tier 1 move-window mirrors
+alt-shift-t = ['move-node-to-workspace t', 'workspace t']
+alt-shift-b = ['move-node-to-workspace b', 'workspace b']
+alt-shift-e = ['move-node-to-workspace e', 'workspace e']
+alt-shift-c = ['move-node-to-workspace c', 'workspace c']
+alt-shift-m = ['move-node-to-workspace m', 'workspace m']
+
+# Back-and-forth
+alt-tab = 'workspace-back-and-forth'
+
+# Multi-monitor
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+# --- Leader modes ---
+alt-o          = 'mode open'
+alt-shift-o    = 'mode move'
+alt-r          = 'mode resize'
+alt-semicolon  = 'mode service'
+alt-w          = 'mode web'
+alt-d          = 'mode dev'
+
+# --- OPEN MODE ---
+[mode.open.binding]
+s = ['exec-and-forget open -ga /Applications/Spotify.app',           'workspace --auto-back-and-forth s', 'mode main']
+w = ['exec-and-forget open -ga /Applications/WhatsApp.app',          'workspace --auto-back-and-forth w', 'mode main']
+i = ['exec-and-forget open -ga /Applications/Discord.app',           'workspace --auto-back-and-forth i', 'mode main']
+f = ['exec-and-forget open -ga /System/Library/CoreServices/Finder.app', 'workspace --auto-back-and-forth f', 'mode main']
+d = ['exec-and-forget open -ga "/Applications/MongoDB Compass.app"', 'workspace --auto-back-and-forth d', 'mode main']
+n = ['exec-and-forget open -ga /System/Applications/Notes.app',      'workspace --auto-back-and-forth n', 'mode main']
+p = ['exec-and-forget open -ga /Applications/Postman.app',           'workspace --auto-back-and-forth p', 'mode main']
+g = ['workspace --auto-back-and-forth g',                            'mode main']
+v = ['exec-and-forget open -ga /Applications/VLC.app',               'workspace --auto-back-and-forth v', 'mode main']
+q = ['exec-and-forget open -ga /System/Applications/Preview.app',    'workspace --auto-back-and-forth q', 'mode main']
+
+# Spatial scratch
+1 = ['workspace --auto-back-and-forth 1', 'mode main']
+2 = ['workspace --auto-back-and-forth 2', 'mode main']
+3 = ['workspace --auto-back-and-forth 3', 'mode main']
+4 = ['workspace --auto-back-and-forth 4', 'mode main']
+
+# Repeat the tier-1 letters here so the leader works as a universal switcher too
+t = ['workspace --auto-back-and-forth t', 'mode main']
+b = ['workspace --auto-back-and-forth b', 'mode main']
+e = ['workspace --auto-back-and-forth e', 'mode main']
+c = ['workspace --auto-back-and-forth c', 'mode main']
+m = ['workspace --auto-back-and-forth m', 'mode main']
+
+esc = 'mode main'
+
+# --- DEV MODE (project URLs + codebases) ---
+# alt-d then letter: opens dev URL in Brave, follows to workspace b.
+[mode.dev.binding]
+l = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "http://localhost:5173"', 'workspace b', 'mode main']
+a = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://aistudio.galleri5.com"', 'workspace b', 'mode main']
+s = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://aistudio-dev.galleri5.com"', 'workspace b', 'mode main']
+b = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://github.com/galleri5/aistudio-backend"', 'workspace b', 'mode main']
+f = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://github.com/galleri5/Tinify-app"', 'workspace b', 'mode main']
+g = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://github.com/galleri5"', 'workspace b', 'mode main']
+p = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://github.com/pulls?q=is%3Aopen+is%3Apr+user%3Agalleri5+involves%3A%40me"', 'workspace b', 'mode main']
+j = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://collectiveartists.atlassian.net/jira/software/projects/TAS/boards/256/backlog?jql=assignee%20%3D%20712020%3A7e8435f3-1e3f-4709-9afd-a71dc07a5d1b"', 'workspace b', 'mode main']
+esc = 'mode main'
+
+# --- WEB MODE (Google productivity + general) ---
+# alt-w then letter: opens general URL in Brave, follows to workspace b.
+[mode.web.binding]
+y = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://youtube.com"', 'workspace b', 'mode main']
+g = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://gemini.google.com"', 'workspace b', 'mode main']
+m = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://mail.google.com"', 'workspace b', 'mode main']
+c = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://calendar.google.com"', 'workspace b', 'mode main']
+t = ['exec-and-forget open -na "/Applications/Brave Browser.app" --args --new-tab "https://meet.google.com"', 'workspace b', 'mode main']
+esc = 'mode main'
+
+# --- MOVE MODE ---
+[mode.move.binding]
+t = ['move-node-to-workspace t', 'workspace t', 'mode main']
+b = ['move-node-to-workspace b', 'workspace b', 'mode main']
+e = ['move-node-to-workspace e', 'workspace e', 'mode main']
+c = ['move-node-to-workspace c', 'workspace c', 'mode main']
+m = ['move-node-to-workspace m', 'workspace m', 'mode main']
+s = ['move-node-to-workspace s', 'workspace s', 'mode main']
+w = ['move-node-to-workspace w', 'workspace w', 'mode main']
+i = ['move-node-to-workspace i', 'workspace i', 'mode main']
+f = ['move-node-to-workspace f', 'workspace f', 'mode main']
+d = ['move-node-to-workspace d', 'workspace d', 'mode main']
+n = ['move-node-to-workspace n', 'workspace n', 'mode main']
+p = ['move-node-to-workspace p', 'workspace p', 'mode main']
+g = ['move-node-to-workspace g', 'workspace g', 'mode main']
+v = ['move-node-to-workspace v', 'workspace v', 'mode main']
+q = ['move-node-to-workspace q', 'workspace q', 'mode main']
+1 = ['move-node-to-workspace 1', 'workspace 1', 'mode main']
+2 = ['move-node-to-workspace 2', 'workspace 2', 'mode main']
+3 = ['move-node-to-workspace 3', 'workspace 3', 'mode main']
+4 = ['move-node-to-workspace 4', 'workspace 4', 'mode main']
+esc = 'mode main'
+
+# --- RESIZE MODE ---
+[mode.resize.binding]
+h     = 'resize smart -50'
+l     = 'resize smart +50'
+j     = 'resize smart +50'
+k     = 'resize smart -50'
+minus = 'resize smart -50'
+equal = 'resize smart +50'
+esc   = 'mode main'
+
+# --- SERVICE MODE ---
+[mode.service.binding]
+esc = [
+    'reload-config',
+    'mode main',
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=2.0',
+]
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+alt-shift-h = ['join-with left',  'mode main']
+alt-shift-j = ['join-with down',  'mode main']
+alt-shift-k = ['join-with up',    'mode main']
+alt-shift-l = ['join-with right', 'mode main']
+
+# --- WINDOW ROUTING ---
+# Tier 1
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace t'
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+run = 'move-node-to-workspace b'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode'
+run = 'move-node-to-workspace e'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.dt.Xcode'
+run = 'move-node-to-workspace e'
+
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = 'move-node-to-workspace c'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace m'
+
+# Tier 2
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace s'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+run = 'move-node-to-workspace s'
+
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = 'move-node-to-workspace w'
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = 'move-node-to-workspace i'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+check-further-callbacks = true
+run = 'move-node-to-workspace f'
+
+[[on-window-detected]]
+if.app-id = 'com.mongodb.compass'
+check-further-callbacks = true
+run = 'move-node-to-workspace d'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Notes'
+run = 'move-node-to-workspace n'
+
+[[on-window-detected]]
+if.app-id = 'com.postmanlabs.mac'
+run = 'move-node-to-workspace p'
+
+[[on-window-detected]]
+if.app-id = 'org.videolan.vlc'
+run = 'move-node-to-workspace v'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Preview'
+run = 'move-node-to-workspace q'
+
+# Graphics workspace g: every 3D / capture / NLE tool lands here
+[[on-window-detected]]
+if.app-id = 'org.blenderfoundation.blender'
+run = 'move-node-to-workspace g'
+[[on-window-detected]]
+if.app-id = 'com.autodesk.Maya'
+run = 'move-node-to-workspace g'
+[[on-window-detected]]
+if.app-id = 'com.maxon.zbrush'
+run = 'move-node-to-workspace g'
+[[on-window-detected]]
+if.app-id = 'com.agisoft.metashape'
+run = 'move-node-to-workspace g'
+[[on-window-detected]]
+if.app-id = 'com.RokokoElectronics.RokokoStudio'
+run = 'move-node-to-workspace g'
+[[on-window-detected]]
+if.app-id = 'com.insta360.studio'
+run = 'move-node-to-workspace g'
+[[on-window-detected]]
+if.app-id = 'com.gopro.GoPro'
+run = 'move-node-to-workspace g'
+[[on-window-detected]]
+if.app-id = 'xyz.gyroflow'
+run = 'move-node-to-workspace g'
+[[on-window-detected]]
+if.app-id = 'com.blackmagic-design.BlackmagicCam'
+run = 'move-node-to-workspace g'
+[[on-window-detected]]
+if.app-id = 'com.epicgames.EpicGamesLauncher'
+run = 'move-node-to-workspace g'
+
+# --- FLOATING UTILITIES ---
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'org.p0deje.Maccy'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.dn.steady.paste'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.philandro.anydesk'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.rdc.macos'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.ActivityMonitor'
+run = 'layout floating'
+
+# Cross-app modal dialogs float
+[[on-window-detected]]
+if.window-title-regex-substring = '(preferences|settings|get info|copy progress)'
+check-further-callbacks = true
+run = 'layout floating'
+
+# Slack huddle/call windows float
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+if.window-title-regex-substring = '(huddle|call)'
+run = 'layout floating'
+
+# MongoDB Compass connection dialogs float
+[[on-window-detected]]
+if.app-id = 'com.mongodb.compass'
+if.window-title-regex-substring = '(connect|new connection)'
+run = 'layout floating'

@@ -1,0 +1,19 @@
+# Debian/Ubuntu packages installed by os/linux/install.sh
+# One per line. # = comment.
+zsh
+tmux
+neovim
+git
+curl
+wget
+build-essential
+stow
+fzf
+fd-find
+ripgrep
+bat
+btop
+jq
+tree
+unzip
+ca-certificates

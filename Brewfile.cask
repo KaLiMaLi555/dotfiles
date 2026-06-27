@@ -1,0 +1,12 @@
+# macOS-only GUI apps. Installed via brew bundle on Mac profiles.
+cask "ghostty"
+cask "aerospace"
+cask "brave-browser"
+cask "raycast"
+cask "maccy"
+# cask "mongodb-compass"
+# cask "postman"
+# cask "discord"
+# cask "spotify"
+# cask "slack"
+# cask "whatsapp"

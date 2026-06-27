@@ -1,0 +1,52 @@
+# Starship — Minimalist TokyoNight Night
+# Line 1: - path [| branch] [| ✔/✖]                    time
+# Line 2: > input
+# Blank line after each command for readability
+
+format = """[─](bold #565f89) $directory$git_branch$python$status$fill$time
+[❯](bold #7dcfff) """
+
+add_newline = true
+
+[directory]
+format = "[$path](bold #7aa2f7)"
+style = "bold #7aa2f7"
+truncation_length = 100
+truncate_to_repo = false
+
+[git_branch]
+format = "[ │ ](fg:#565f89)[$branch](bold #bb9af7)"
+style = "bold #bb9af7"
+symbol = " "
+# Only rendered when inside a git repo — so separator only appears then
+
+[status]
+format = "[ │ ](fg:#565f89)[$symbol]($style)"
+success_symbol = "[✔](bold #9ece6a)"
+symbol = "[✖](bold #f7768e)"
+style = "bold #f7768e"
+disabled = false
+# Only rendered when last command was non-zero...
+# But we want ✔ always — so keep disabled = false
+
+[time]
+disabled = false
+format = "[$time]($style)"
+style = "fg:#565f89"
+time_format = "%H:%M"
+
+[fill]
+symbol = " "
+
+[package]
+disabled = true
+[nodejs]
+disabled = true
+[python]
+format = "[ │ ](fg:#565f89)[](bold #e0af68)[$virtualenv](bold #e0af68)[ $version](fg:#565f89)"
+[golang]
+disabled = true
+[java]
+disabled = true
+[docker_context]
+disabled = true

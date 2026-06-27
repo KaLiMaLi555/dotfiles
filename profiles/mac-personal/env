@@ -1,0 +1,2 @@
+# Profile-specific env vars used by lib/render.sh during install
+WORK_DIR=/Users/kalimali/work/galleri5

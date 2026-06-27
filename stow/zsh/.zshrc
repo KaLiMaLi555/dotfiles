@@ -56,9 +56,10 @@ zinit light zsh-users/zsh-history-substring-search
 zinit ice wait lucid
 zinit light Aloxaf/fzf-tab                  # replace zsh tab-complete with fzf
 
-# fzf — pinned binary + shell integration from same release (apt fzf is too old, breaks new key-bindings.zsh)
+# fzf — pinned binary + shell integration loaded SYNCHRONOUSLY so binary+scripts match before key-bindings load.
+# (apt fzf is too old for current key-bindings.zsh — async load races with binary install.)
 zinit ice from"gh-r" as"program" mv"fzf -> fzf" pick"fzf" \
-  wait lucid multisrc"shell/{key-bindings,completion}.zsh"
+  multisrc"shell/{key-bindings,completion}.zsh"
 zinit light junegunn/fzf
 
 # Ubuntu/Debian renames fd → fdfind. Pick whichever exists.

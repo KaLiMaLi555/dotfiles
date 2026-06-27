@@ -8,7 +8,6 @@ curl
 wget
 build-essential
 stow
-fzf
 fd-find
 ripgrep
 bat
